@@ -1,3 +1,6 @@
+/**
+ * TODO: jsdoc
+ */
 (function(doc){
   function getC(key){
     if(doc.cookie){
