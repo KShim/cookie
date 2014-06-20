@@ -1,9 +1,4 @@
 (function(doc){
-  function setC(key, val, expires) {
-    expires = expires + ';' || '';
-    doc.cookie = key + '=' + val + ';' + expires;
-  }
-  
   function getC(key){
     if(doc.cookie){
       var aryC = doc.cookie.split(';');
@@ -16,5 +11,22 @@
       }
     }
     return '';
+  }
+  
+  function setC(key, val, expiresSec, path, domain, secure) {
+    var cookie = key + "=" + val;
+    if (expiresSec || expiresSec == 0) {
+      cookie += "; max-age=" + expiresSec;
+    }
+    if (path){
+      cookie += "; path=" + path;
+    }
+    if (domain){
+      cookie += "; domain=" + domain;
+    }
+    if (secure){
+      cookie += "; secure";
+    }
+    doc.cookie = cookie;
   }
 })(document);
